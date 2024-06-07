@@ -128,6 +128,13 @@ func manifestForDiskImage(c *ManifestConfig, rng *rand.Rand) (*manifest.Manifest
 			BasePlatform: platform.BasePlatform{},
 			BIOS:         true,
 		}
+	case arch.ARCH_PPC64LE:
+		img.Platform = &platform.PPC64LE{
+			BasePlatform: platform.BasePlatform{
+				QCOW2Compat: "1.1",
+			},
+			BIOS:         true,
+		}
 	case arch.ARCH_AARCH64:
 		img.Platform = &platform.Aarch64{
 			UEFIVendor: "fedora",
@@ -259,6 +266,13 @@ func manifestForISO(c *ManifestConfig, rng *rand.Rand) (*manifest.Manifest, erro
 			},
 			UEFIVendor: c.SourceInfo.UEFIVendor,
 		}
+        case arch.ARCH_PPC64LE:
+                img.Platform = &platform.PPC64LE{
+                        BasePlatform: platform.BasePlatform{
+                                ImageFormat: platform.FORMAT_ISO,
+                        },
+			BIOS:       true,
+                }
 	}
 
 	img.OSName = "default"
