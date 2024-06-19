@@ -130,4 +130,4 @@ require (
 	gopkg.in/ini.v1 v1.67.0 // indirect
 )
 
-replace github.com/osbuild/images => github.com/ppc64le-cloud/images v0.0.0-20240607063210-3171a7bcb39b
+replace github.com/osbuild/images => github.com/ppc64le-cloud/images v0.61.1-0.20240619105012-3fbc2b701f1a
