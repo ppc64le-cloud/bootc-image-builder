@@ -175,7 +175,7 @@ func manifestForDiskImage(c *ManifestConfig, rng *rand.Rand) (*manifest.Manifest
 		}
 		rootFS.Type = c.RootFSType
 	} else if c.RootFSType == "btrfs" {
-		partitioningMode = disk.BtfrsPartitioningMode
+		partitioningMode = disk.BtrfsPartitioningMode
 	}
 
 	if err := applyFilesystemCustomizations(customizations, c); err != nil {
@@ -289,6 +289,13 @@ func manifestForISO(c *ManifestConfig, rng *rand.Rand) (*manifest.Manifest, erro
 			},
 			UEFIVendor: c.SourceInfo.UEFIVendor,
 		}
+        case arch.ARCH_PPC64LE:
+                img.Platform = &platform.PPC64LE{
+                        BasePlatform: platform.BasePlatform{
+                                ImageFormat: platform.FORMAT_ISO,
+                        },
+			BIOS:       true,
+                }
 	}
 
 	img.Filename = "install.iso"
